@@ -50,6 +50,8 @@ function exercise1(): int
 
 var_dump(exercise1());
 
+echo PHP_EOL .'2 uzduotis' .PHP_EOL;
+
 function exercise2(): int
 {
     /*
@@ -59,10 +61,12 @@ function exercise2(): int
 
     // array_column(array $array, int|string|null $column_key, int|string|null $index_key = null): array
 
-    return 0;
+    return array_sum(array_column(getCities(), 'population'));
 }
 
 var_dump(exercise2());
+
+echo PHP_EOL .'3 uzduotis' .PHP_EOL;
 
 function exercise3(): int
 {
@@ -70,8 +74,16 @@ function exercise3(): int
     Suskaičiuokite bendrą miestų populiaciją pasinaudodami funkcija array_reduce ir grąžinkite ją iš funkcijos
     */
 
-    return 0;
+    $result = array_reduce(getCities(), function (?int $sum, array $city) {
+        $sum += $city['population'];
+        return $sum;
+    });
+    return $result;
 }
+
+var_dump(exercise3());
+
+echo PHP_EOL .'4 uzduotis' .PHP_EOL;
 
 function exercise4(): int
 {
@@ -79,9 +91,20 @@ function exercise4(): int
     Suskaičiuokite populiaciją miestų, kurie yra didesni nei 25,000,000 gyventojų.
     Rinkites sau patogiausią skaičiavimo būdą.
     */
+    $calc = array_reduce(getCities(), function (?int $sum, array $city) {
+        if ($city['population'] > 25000000)
+        $sum += $city['population'];
+        return $sum;
+    });
+
+    return $calc;
 
     return 0;
 }
+
+var_dump(exercise4());
+
+echo PHP_EOL .'5 uzduotis' .PHP_EOL;
 
 function exercise5(): array
 {
@@ -97,8 +120,18 @@ function exercise5(): array
     ]
     */
 
-    return [];
+    $result = array_filter(getCities(), function (array $city) : array {
+        if ($city['population'] > 25000000)
+            return $city;
+        return [];
+    });
+    return $result;
 }
+
+
+var_dump(exercise5());
+
+echo PHP_EOL .'6 uzduotis' .PHP_EOL;
 
 function exercise6(): int
 {
