@@ -254,8 +254,15 @@ function exercise8(): array
     Nario reikšmė - $fridge
     */
 
-    return [];
+    $products['fridge'] = $fridge;
+
+    return $products;
 }
+
+var_dump(exercise8());
+
+echo PHP_EOL .'9 uzduotis' .PHP_EOL;
+
 
 function exercise9(): float
 {
