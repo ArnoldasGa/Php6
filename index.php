@@ -270,9 +270,18 @@ function exercise9(): float
     /*
     Raskite ir grąžinkite visų produktų kainų vidurkį.
     */
-
-    return 0;
+    $i = 1;
+    return array_reduce($products, function (?float $average, array $product)use($products){
+        if (end($products) !== $product) {
+            return $average += $product['price'];
+        }
+        return ($average + $product['price'])/count($product);
+    });
 }
+
+var_dump(exercise9());
+
+echo PHP_EOL .'10 uzduotis' .PHP_EOL;
 
 function exercise10(): array
 {
