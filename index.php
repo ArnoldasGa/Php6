@@ -309,6 +309,12 @@ function exercise10(): array
         ...
     ];
     */
-
-    return [];
+        $transactions = array_map(function($item){
+            $item['totla'] = $item['count'] * $item['price'];
+            return $item;
+        },$transactions);
+        
+    return $transactions;
 }
+
+var_dump(exercise10());
