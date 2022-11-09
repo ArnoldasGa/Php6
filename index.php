@@ -174,9 +174,10 @@ function exercise6(): int
 
 
     $array = array_reduce($orderItems, function(?int $sum, array $items)use($lowPriceItems){
-        if (in_array($items['name'], $lowPriceItems))
-        return $sum += $items['priceLow'];
-        return  $sum += $items['priceRegular'];
+        if (in_array($items['name'], $lowPriceItems)){
+            return $sum += $items['priceLow'] * $items['quantity'];
+        }
+            return $sum += $items['priceRegular'] * $items['quantity'];
     });
 
 
@@ -205,8 +206,18 @@ function exercise7(): array
     naudokite array_filter.
     */
 
-    return [];
+
+
+    return array_filter($transactions, function (array $check){
+        if ($check['status'] === 'error'){
+            return $check;
+        }
+    });
 }
+
+var_dump(exercise7());
+
+echo PHP_EOL .'8 uzduotis' .PHP_EOL;
 
 // Žr. kitą užduotį
 function getProducts(): array
