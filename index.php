@@ -165,7 +165,7 @@ function exercise6(): int
             'quantity' => 2,
         ],
         [
-            'name' => 'shoes',
+            'name' => 'shoes', 
             'priceRegular' => 115,
             'priceLow' => 100,
             'quantity' => 1,
@@ -173,8 +173,19 @@ function exercise6(): int
     ];
 
 
-    return 0;
+    $array = array_reduce($orderItems, function(?int $sum, array $items)use($lowPriceItems){
+        if (in_array($items['name'], $lowPriceItems))
+        return $sum += $items['priceLow'];
+        return  $sum += $items['priceRegular'];
+    });
+
+
+    return $array;
 }
+
+var_dump(exercise6());
+
+echo PHP_EOL .'7 uzduotis' .PHP_EOL;
 
 function exercise7(): array
 {
